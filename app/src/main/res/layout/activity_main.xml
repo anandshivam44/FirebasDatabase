@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+    <EditText android:gravity="center" android:id="@+id/name" android:layout_width="match_parent" android:layout_height="40dp" android:layout_margin="40dp" android:hint="Name"/>
+    <EditText android:gravity="center" android:id="@+id/age" android:layout_width="match_parent" android:layout_height="40dp" android:layout_margin="40dp" android:hint="Age" android:layout_below="@+id/name" android:inputType="number"/>
+    <TextView android:gravity="center" android:id="@+id/text_view" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="30dp" android:text="Text Here" android:layout_below="@+id/age"/>
+    <Button android:gravity="center" android:id="@+id/execute_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="30dp" android:text="Execute" android:layout_below="@+id/text_view" android:layout_centerInParent="true"/>
+    <Button android:gravity="center" android:id="@+id/read_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="30dp" android:text="Read Data" android:layout_below="@+id/execute_button" android:layout_centerInParent="true"/>
+</RelativeLayout>
