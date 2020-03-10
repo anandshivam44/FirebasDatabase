@@ -1,11 +1,11 @@
 package com.example.firebasedatabase.model;
 
 public class User {
-    String name;
+    String Name;
     String age;
 
-    public User(String name, String age) {
-        this.name = name;
+    public User(String Name, String age) {
+        this.Name = Name;
         this.age = age;
     }
 
@@ -15,11 +15,11 @@ public class User {
 
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.Name = name;
     }
 
     public String getAge() {

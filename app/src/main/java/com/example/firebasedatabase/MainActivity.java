@@ -12,14 +12,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firebasedatabase.model.User;
+import com.example.firebasedatabase.model.UserAdapter;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MyTag";
@@ -28,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase mDatabase;
     ValueEventListener mListner;
     ChildEventListener childListner;
+    RecyclerView mRecyclerView;
+    UserAdapter mUserAdapter;
+    List <User> mDataList;
+
     EditText mName;
     TextView mOutputText;
     DatabaseReference mRef;
@@ -91,8 +101,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Log.d(TAG, "onChildAdded: CALLED");
-                User person=dataSnapshot.getValue(User.class);
-                Log.d(TAG, "Name = "+person.getName()+" Age = "+person.getAge());
+                User user=dataSnapshot.getValue(User.class);
+                mDataList.add(user);
+                mUserAdapter.notifyDataSetChanged();
+                Log.d(TAG, "Name = "+user.getName()+" Age = "+user.getAge());
 
             }
 
@@ -127,6 +139,11 @@ public class MainActivity extends AppCompatActivity {
         FirebaseDatabase instance = FirebaseDatabase.getInstance();
         mDatabase = instance;
         mRef = instance.getReference("users");
+        mRecyclerView=findViewById(R.id.user_recycler_view);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mDataList=new ArrayList<>();
+        mUserAdapter=new UserAdapter(this,mDataList);
+        mRecyclerView.setAdapter(mUserAdapter);
     }
 
     /* access modifiers changed from: protected */
